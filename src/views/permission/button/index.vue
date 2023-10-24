@@ -8,14 +8,15 @@ defineOptions({
 
 const elStyle = computed((): CSSProperties => {
   return {
-    width: "85vw",
+    marginBottom: "24px",
+    width: "100%",
     justifyContent: "start"
   };
 });
 </script>
 
 <template>
-  <el-space direction="vertical" size="large">
+  <div>
     <el-tag :style="elStyle" size="large" effect="dark">
       当前拥有的code列表：{{ getAuths() }}
     </el-tag>
@@ -71,5 +72,5 @@ const elStyle = computed((): CSSProperties => {
         拥有code：['btn_add', 'btn_edit', 'btn_delete'] 权限可见
       </el-button>
     </el-card>
-  </el-space>
+  </div>
 </template>

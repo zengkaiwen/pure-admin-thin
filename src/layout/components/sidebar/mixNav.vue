@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import extraIcon from "./extraIcon.vue";
-import Search from "../search/index.vue";
-import Notice from "../notice/index.vue";
+// import Search from "../search/index.vue";
+// import Notice from "../notice/index.vue";
 import { isAllEmpty } from "@pureadmin/utils";
 import { useNav } from "@/layout/hooks/useNav";
 import { ref, toRaw, watch, onMounted, nextTick } from "vue";
@@ -10,6 +10,7 @@ import { getParentPaths, findRouteByPath } from "@/router/utils";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
 import Setting from "@iconify-icons/ri/settings-3-line";
+import Logo from "./logo.vue";
 
 const menuRef = ref();
 const defaultActive = ref(null);
@@ -21,9 +22,9 @@ const {
   onPanel,
   resolvePath,
   username,
-  userAvatar,
-  getDivStyle,
-  avatarsStyle
+  // userAvatar,
+  getDivStyle
+  // avatarsStyle
 } = useNav();
 
 function getDefaultActive(routePath) {
@@ -57,6 +58,7 @@ watch(
     class="horizontal-header"
     v-loading="usePermissionStoreHook().wholeMenus.length === 0"
   >
+    <Logo />
     <el-menu
       router
       ref="menuRef"
@@ -89,13 +91,13 @@ watch(
     </el-menu>
     <div class="horizontal-header-right">
       <!-- 菜单搜索 -->
-      <Search />
+      <!-- <Search /> -->
       <!-- 通知 -->
-      <Notice id="header-notice" />
+      <!-- <Notice id="header-notice" /> -->
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img :src="userAvatar" :style="avatarsStyle" />
+          <!-- <img :src="userAvatar" :style="avatarsStyle" /> -->
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>

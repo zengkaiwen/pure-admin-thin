@@ -11,7 +11,8 @@ defineOptions({
 
 const elStyle = computed((): CSSProperties => {
   return {
-    width: "85vw",
+    marginBottom: "24px",
+    width: "100%",
     justifyContent: "start"
   };
 });
@@ -43,7 +44,7 @@ function onChange() {
 </script>
 
 <template>
-  <el-space direction="vertical" size="large">
+  <div>
     <el-tag :style="elStyle" size="large" effect="dark">
       模拟后台根据不同角色返回对应路由（具体参考完整版pure-admin代码）
     </el-tag>
@@ -62,5 +63,5 @@ function onChange() {
         />
       </el-select>
     </el-card>
-  </el-space>
+  </div>
 </template>

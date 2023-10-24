@@ -18,7 +18,33 @@ html.dark {
     background: var(--el-bg-color) !important;
   }
 
-  .app-main {
+  &.layout-theme-default .horizontal-header {
+    .el-menu-item,
+    .el-sub-menu__title {
+      color: #fff;
+
+      &:hover {
+        color: $subMenuActiveText !important;
+      }
+    }
+  }
+
+  &.layout-theme-default .scrollbar-wrapper {
+    .el-menu-item,
+    .el-sub-menu__title {
+      color: #fff;
+
+      &:hover {
+        color: $subMenuActiveText !important;
+      }
+    }
+  }
+
+  &.layout-theme-default .sidebar-container .el-sub-menu .el-menu-item {
+    background-color: transparent !important;
+  }
+
+  .main-container {
     background: #020409 !important;
   }
 

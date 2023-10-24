@@ -3,6 +3,7 @@ import { useGlobal } from "@pureadmin/utils";
 import backTop from "@/assets/svg/back_top.svg?component";
 import { h, computed, Transition, defineComponent } from "vue";
 import { usePermissionStoreHook } from "@/store/modules/permission";
+import Breadcrumb from "./sidebar/breadCrumb.vue";
 
 const props = defineProps({
   fixedHeader: Boolean
@@ -28,14 +29,22 @@ const layout = computed(() => {
   return $storage?.layout.layout === "vertical";
 });
 
+const isMixLayout = computed(() => {
+  return $storage?.layout.layout === "mix";
+});
+
 const getSectionStyle = computed(() => {
-  return [
-    hideTabs.value && layout ? "padding-top: 48px;" : "",
-    !hideTabs.value && layout ? "padding-top: 85px;" : "",
-    hideTabs.value && !layout.value ? "padding-top: 48px" : "",
-    !hideTabs.value && !layout.value ? "padding-top: 85px;" : "",
-    props.fixedHeader ? "" : "padding-top: 0;"
-  ];
+  if ($storage?.layout.layout === "mix") {
+    return hideTabs.value ? "padding-top: 80px;" : "padding-top: 117px;";
+  } else {
+    return [
+      hideTabs.value && layout ? "padding-top: 48px;" : "",
+      !hideTabs.value && layout ? "padding-top: 85px;" : "",
+      hideTabs.value && !layout.value ? "padding-top: 48px" : "",
+      !hideTabs.value && !layout.value ? "padding-top: 85px;" : "",
+      props.fixedHeader ? "" : "padding-top: 0;"
+    ];
+  }
 });
 
 const transitionMain = defineComponent({
@@ -80,6 +89,7 @@ const transitionMain = defineComponent({
   >
     <router-view>
       <template #default="{ Component, route }">
+        <Breadcrumb v-if="isMixLayout" class="mix-breadcrumb" />
         <el-scrollbar v-if="props.fixedHeader">
           <el-backtop title="回到顶部" target=".app-main .el-scrollbar__wrap">
             <backTop />
@@ -92,14 +102,14 @@ const transitionMain = defineComponent({
               <component
                 :is="Component"
                 :key="route.fullPath"
-                class="main-content"
+                :class="['main-content', isMixLayout ? 'isMixLayout' : '']"
               />
             </keep-alive>
             <component
               v-else
               :is="Component"
               :key="route.fullPath"
-              class="main-content"
+              :class="['main-content', isMixLayout ? 'isMixLayout' : '']"
             />
           </transitionMain>
         </el-scrollbar>
@@ -112,14 +122,14 @@ const transitionMain = defineComponent({
               <component
                 :is="Component"
                 :key="route.fullPath"
-                class="main-content"
+                :class="['main-content', isMixLayout ? 'isMixLayout' : '']"
               />
             </keep-alive>
             <component
               v-else
               :is="Component"
               :key="route.fullPath"
-              class="main-content"
+              :class="['main-content', isMixLayout ? 'isMixLayout' : '']"
             />
           </transitionMain>
         </div>
@@ -144,5 +154,9 @@ const transitionMain = defineComponent({
 
 .main-content {
   margin: 24px;
+
+  &.isMixLayout {
+    margin: 0 24px;
+  }
 }
 </style>

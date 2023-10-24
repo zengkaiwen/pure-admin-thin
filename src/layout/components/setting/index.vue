@@ -62,9 +62,9 @@ if (unref(layoutTheme)) {
 }
 
 /** 默认灵动模式 */
-const markValue = ref($storage.configure?.showModel ?? "smart");
+// const markValue = ref($storage.configure?.showModel ?? "smart");
 
-const logoVal = ref($storage.configure?.showLogo ?? true);
+// const logoVal = ref($storage.configure?.showLogo ?? true);
 
 const settings = reactive({
   greyVal: $storage.configure.grey,
@@ -123,11 +123,11 @@ const tagsChange = () => {
   emitter.emit("tagViewsChange", showVal as unknown as string);
 };
 
-const multiTagsCacheChange = () => {
-  const multiTagsCache = settings.multiTagsCache;
-  storageConfigureChange("multiTagsCache", multiTagsCache);
-  useMultiTagsStoreHook().multiTagsCacheChange(multiTagsCache);
-};
+// const multiTagsCacheChange = () => {
+//   const multiTagsCache = settings.multiTagsCache;
+//   storageConfigureChange("multiTagsCache", multiTagsCache);
+//   useMultiTagsStoreHook().multiTagsCacheChange(multiTagsCache);
+// };
 
 /** 清空缓存并返回登录页 */
 function onReset() {
@@ -145,18 +145,18 @@ function onReset() {
   resetRouter();
 }
 
-function onChange(label) {
-  storageConfigureChange("showModel", label);
-  emitter.emit("tagViewsShowModel", label);
-}
+// function onChange(label) {
+//   storageConfigureChange("showModel", label);
+//   emitter.emit("tagViewsShowModel", label);
+// }
 
 /** 侧边栏Logo */
-function logoChange() {
-  unref(logoVal)
-    ? storageConfigureChange("showLogo", true)
-    : storageConfigureChange("showLogo", false);
-  emitter.emit("logoChange", unref(logoVal));
-}
+// function logoChange() {
+//   unref(logoVal)
+//     ? storageConfigureChange("showLogo", true)
+//     : storageConfigureChange("showLogo", false);
+//   emitter.emit("logoChange", unref(logoVal));
+// }
 
 function setFalse(Doms): any {
   Doms.forEach(v => {
@@ -340,7 +340,7 @@ onBeforeMount(() => {
           @change="weekChange"
         />
       </li>
-      <li>
+      <!-- <li>
         <span class="dark:text-white">隐藏标签页</span>
         <el-switch
           v-model="settings.tabsVal"
@@ -350,8 +350,8 @@ onBeforeMount(() => {
           inactive-text="关"
           @change="tagsChange"
         />
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <span class="dark:text-white">侧边栏Logo</span>
         <el-switch
           v-model="logoVal"
@@ -363,8 +363,8 @@ onBeforeMount(() => {
           inactive-text="关"
           @change="logoChange"
         />
-      </li>
-      <li>
+      </li> -->
+      <!-- <li>
         <span class="dark:text-white">标签页持久化</span>
         <el-switch
           v-model="settings.multiTagsCache"
@@ -374,15 +374,15 @@ onBeforeMount(() => {
           inactive-text="关"
           @change="multiTagsCacheChange"
         />
-      </li>
+      </li> -->
 
-      <li>
+      <!-- <li>
         <span class="dark:text-white">标签风格</span>
         <el-radio-group v-model="markValue" size="small" @change="onChange">
           <el-radio label="card">卡片</el-radio>
           <el-radio label="smart">灵动</el-radio>
         </el-radio-group>
-      </li>
+      </li> -->
     </ul>
 
     <el-divider />
